@@ -122,7 +122,6 @@ nav a{
 
     margin:auto;
 
- 
 
 
 }
@@ -192,6 +191,18 @@ gap:21px;
 
 }
 
+.mold-text-center{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight:lighter;
+    font-size: 32px;
+    margin-top: 20px;
+
+
+}
+
 .temperature-block{
 
     height: 170px;
@@ -205,9 +216,27 @@ gap:21px;
 
 }
 
+.status-ac{
+
+
+    position: absolute;
+    top: 39%;  
+    left: 50%; 
+    transform: translate(-50%, -50%);  
+    font-size: 32px;
+    font-stretch: condensed;
+    font-weight:lighter;
+
+    margin-top: 28px;
+
+
+}
+
+
+
 .thermometer-size{
 
-    font-size: 40px;
+    font-size: 35px;
 
 }
 
