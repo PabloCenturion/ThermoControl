@@ -36,7 +36,7 @@ color: #CED4DA;
 
 .logo{
 
-    font-style: italic;
+    font-weight: 600;
 
 }
 
@@ -138,7 +138,7 @@ nav a{
     width: 526px;
     height: 180px;
  border: 2px solid #ACACAC;
- 
+
     background: linear-gradient(to top,#747474, #D3D3D3, #FFFF);
     border-radius: 2%;
 
