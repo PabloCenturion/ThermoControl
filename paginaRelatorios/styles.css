@@ -36,6 +36,7 @@ color: #CED4DA;
 
 .logo{
 
+    padding-top: 15px;
     font-weight: 600;
 
 }
@@ -47,7 +48,7 @@ nav a{
 
 }
 
-.container-main{
+.container-infos{
 
     padding-top: 35px;
     padding-left: 90px;
@@ -62,7 +63,8 @@ p {
     font-size: 18px;
 }
 
-.chart-placeholder {
+.chart-type {
+
     border: 2px dashed #ccc;
     display: flex;
     justify-content: center;
@@ -71,10 +73,24 @@ p {
     font-size: 18px;
 }
 
-.text-white {
+.title-page {
     color: white;
 }
 
-.text-muted {
-    color: #bfbfbf;
+.form-size{
+
+width: 200px;
+
 }
+
+.container-selectors{
+
+
+    display: flex;
+    padding-bottom: 20px;
+    gap: 10px;
+    justify-content: end;
+
+}
+
+
