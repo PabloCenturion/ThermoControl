@@ -78,6 +78,12 @@ nav a{
     border: 1px solid white;
 
     background: linear-gradient(to top,#747474, #D3D3D3, #FFFF);
+    border-radius: 2%;
+
+    filter: drop-shadow(10px 10px 4px black);
+
+    
+
 
 }
 
@@ -129,6 +135,9 @@ nav a{
 
 
     background: linear-gradient(to top,#747474, #D3D3D3, #FFFF);
+    border-radius: 2%;
+
+    filter: drop-shadow(10px 10px 4px black);
 
 
 }
@@ -151,8 +160,8 @@ nav a{
 
     font-size: 22px;
     font-weight: 600;
-    font-style: italic; /* Define o texto como itálico */
-    font-stretch: condensed; /* Tenta condensar a largura da fonte */
+    font-style: italic; 
+    font-stretch: condensed;
     text-decoration: underline;
 
 
@@ -174,16 +183,169 @@ nav a{
 
 }
 
+.container-blocks-status{
+
+display: flex;
+flex-direction: row;
+justify-content: center;
+gap:21px;
+
+}
+
 .temperature-block{
 
     height: 170px;
     width: 230px;
     border: 1px solid black;
 
-   
+    background: linear-gradient(to top,#747474, #D3D3D3, #FFFF);
+    border-radius: 7%;
+
+    filter: drop-shadow(10px 10px 4px black);
 
 }
 
+.thermometer-size{
+
+    font-size: 40px;
+
+}
+
+.temp-title{
+
+    display: flex;
+    align-items: center;    
+    gap: 10px;
+
+
+    font-size: 20px;
+    font-weight: 600;
+    font-style: italic; 
+    font-stretch: condensed;
+    text-decoration: underline;
+
+
+    margin:auto;
+    padding-left: 20px;
+
+}
+
+.umidity-block{
+
+    height: 170px;
+    width: 230px;
+    border: 1px solid black;
+
+    background: linear-gradient(to top,#747474, #D3D3D3, #FFFF);
+    border-radius: 7%;
+
+    filter: drop-shadow(10px 10px 4px black);
+
+}
+
+.umi-title{
+
+    display: flex;
+    align-items: center;    
+    gap: 10px;
+
+
+    font-size: 20px;
+    font-weight: 600;
+    font-style: italic; 
+    font-stretch: condensed;
+    text-decoration: underline;
+
+
+    margin:auto;
+    padding-left: 40px;
+
+}
+
+.droplet-size{
+
+    font-size: 33px;
+    
+}
+
+
+.power-block{
+
+    height: 170px;
+    width: 230px;
+    border: 1px solid black;
+
+    background: linear-gradient(to top,#747474, #D3D3D3, #FFFF);
+    border-radius: 7%;
+
+    filter: drop-shadow(10px 10px 4px black);
+
+}
+
+.pwr-title{
+
+    display: flex;
+    align-items: center;    
+    gap: 10px;
+
+
+    font-size: 20px;
+    font-weight: 600;
+    font-style: italic; 
+    font-stretch: condensed;
+    text-decoration: underline;
+
+
+    margin:auto;
+    padding-left: 40px;
+
+
+
+}
+
+.flash-size{
+
+    font-size: 35px;
+}
+
+.current-block{
+
+    height: 170px;
+    width: 230px;
+    border: 1px solid black;
+
+    background: linear-gradient(to top,#747474, #D3D3D3, #FFFF);
+    border-radius: 7%;
+
+    filter: drop-shadow(10px 10px 4px black);
+
+}
+
+.crt-title{
+
+    display: flex;
+    align-items: center;    
+    gap: 10px;
+
+
+    font-size: 20px;
+    font-weight: 600;
+    font-style: italic; 
+    font-stretch: condensed;
+    text-decoration: underline;
+
+
+    margin:auto;
+    padding-left: 40px;
+
+
+}
+
+
+.outlet-size{
+
+    font-size: 35px;
+}
 
 
 
