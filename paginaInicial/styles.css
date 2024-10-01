@@ -33,6 +33,13 @@ color: #CED4DA;
 
 }
 
+
+.logo{
+
+    font-style: italic;
+
+}
+
 nav a{
 
     text-decoration: none;
@@ -75,7 +82,7 @@ nav a{
 
     width: 526px;
     height: 180px;
-    border: 1px solid white;
+    border: 2px solid #ACACAC;
 
     background: linear-gradient(to top,#747474, #D3D3D3, #FFFF);
     border-radius: 2%;
@@ -130,15 +137,22 @@ nav a{
 
     width: 526px;
     height: 180px;
-    border: 1px solid white;
-
-
+ border: 2px solid #ACACAC;
+ 
     background: linear-gradient(to top,#747474, #D3D3D3, #FFFF);
     border-radius: 2%;
 
     filter: drop-shadow(10px 10px 4px black);
 
 
+}
+
+
+
+.power-size{
+
+
+    font-size: 50px;
 }
 
 .ac-block button{
@@ -182,6 +196,9 @@ nav a{
 
 }
 
+
+
+
 .container-blocks-status{
 
 display: flex;
@@ -207,7 +224,7 @@ gap:21px;
 
     height: 170px;
     width: 230px;
-    border: 1px solid black;
+    border: 2px solid #ACACAC;
 
     background: linear-gradient(to top,#747474, #D3D3D3, #FFFF);
     border-radius: 7%;
@@ -221,7 +238,22 @@ gap:21px;
 
     position: absolute;
     top: 39%;  
-    left: 50%; 
+    left: 42%; 
+    transform: translate(-50%, -50%);  
+    font-size: 32px;
+    font-stretch: condensed;
+    font-weight:lighter;
+
+    margin-top: 28px;
+
+
+}
+
+.status-power{
+
+    position: absolute;
+    top: 39%;  
+    left: 72%; 
     transform: translate(-50%, -50%);  
     font-size: 32px;
     font-stretch: condensed;
@@ -263,7 +295,7 @@ gap:21px;
 
     height: 170px;
     width: 230px;
-    border: 1px solid black;
+    border: 2px solid #ACACAC;
 
     background: linear-gradient(to top,#747474, #D3D3D3, #FFFF);
     border-radius: 7%;
@@ -302,7 +334,7 @@ gap:21px;
 
     height: 170px;
     width: 230px;
-    border: 1px solid black;
+ border: 2px solid #ACACAC;
 
     background: linear-gradient(to top,#747474, #D3D3D3, #FFFF);
     border-radius: 7%;
@@ -341,7 +373,7 @@ gap:21px;
 
     height: 170px;
     width: 230px;
-    border: 1px solid black;
+ border: 2px solid #ACACAC;
 
     background: linear-gradient(to top,#747474, #D3D3D3, #FFFF);
     border-radius: 7%;
