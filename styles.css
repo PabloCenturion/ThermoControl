@@ -5,6 +5,8 @@
 
 body{
 
+    background-color: #172B37;
+
    
     margin:0;
     background-size:auto;
@@ -12,6 +14,7 @@ body{
 
 
 }
+
 nav{
 
 overflow: hidden;
@@ -35,6 +38,154 @@ nav a{
     text-decoration: none;
     color: #CED4DA;
 
+}
+
+.container-display-info{
+
+    padding-top: 20px;
+    padding-left: 90px;
+
+}
+
+.title{
+
+    font-size: 28px;
+
+    font-weight: 600; /*semi-bold*/
+    font-style: italic;
+    color: white;
+
+}
+
+.container-blocks{
+
+    margin-left: 40px;
+    padding: 20px;
+
+    display: flex;
+
+    gap:20px;
+
+    
+}
+
+.alerts-block{
+
+    opacity: 50%;
+
+    width: 526px;
+    height: 180px;
+    border: 1px solid white;
+
+    background: linear-gradient(to top,#747474, #D3D3D3, #FFFF);
+
+}
+
+.bell-size{
+
+    font-size: 30px;
+}
+
+.alert-title{
+
+    display: flex;
+    align-items: center;    
+    gap: 10px;
+
+
+    font-size: 22px;
+    font-weight: 600;
+    font-style: italic; 
+    font-stretch: condensed; 
+    text-decoration: underline;
+
+    margin:auto;
+    padding-left: 20px;
+
+}
+
+.text-status-alerts{
+
+    padding-top: 20px;
+
+
+    display: flex;
+    justify-content: center; 
+    align-items: center;  
+    font-size: 32px;
+
+    margin:auto;
+
+ 
 
 
 }
+
+.ac-block{
+
+    width: 526px;
+    height: 180px;
+    border: 1px solid white;
+
+
+    background: linear-gradient(to top,#747474, #D3D3D3, #FFFF);
+
+
+}
+
+.ac-block button{
+
+    background: none;
+    border: none;
+
+}
+
+
+
+.ac-title{
+
+    display: flex;
+    align-items: center;    
+    gap: 10px;
+
+
+    font-size: 22px;
+    font-weight: 600;
+    font-style: italic; /* Define o texto como itálico */
+    font-stretch: condensed; /* Tenta condensar a largura da fonte */
+    text-decoration: underline;
+
+
+    margin:auto;
+    padding-left: 20px;
+
+
+}
+
+
+.buttons-ac{
+
+    padding-top: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.temperature-block{
+
+    height: 170px;
+    width: 230px;
+    border: 1px solid black;
+
+   
+
+}
+
+
+
+
+
+

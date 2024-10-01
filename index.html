@@ -3,7 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+        <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  
+
     <link rel="stylesheet" href="styles.css">
+
+  
+  
+    
     <title>ThermoControl</title>
 </head>
 <body>
@@ -17,8 +28,71 @@
         <a href="#Alertas">Alertas</a>
         <a href="#Configurações">Configurações</a>       
     </nav>
+
+    <section class="container-display-info">
+
+        <div class="titulo-block">
+
+        <p class="title">Status Da 'Sala De Servidores Da Uniamerica'</p>
+
+     </div>
+
+    <div class="container-blocks">
+
+        <article class="alerts-block">
+
+            <p class="alert-title"><i class="bi bi-bell-fill bell-size"></i>Alertas</p>
+
+            <p class="text-status-alerts">Sem Avisos</p>
+
+        </article>
+
+
+        <article class="ac-block">
+
+            <p class="ac-title"><img src="./imgsDoSite/airConditioner.png" alt="Icone Ar Condicionado"> Ar Condicionado</p>
+
+        
+        <div class="buttons-ac">
+
+            <button type="button"><img src="./imgsDoSite/plus-button.png" alt="icone mais"></button>
+
+            <button type="button"><img src="./imgsDoSite/Rectangle 6.png" alt="icone mais"></button>
+
+            <button type="button"><img src="./imgsDoSite/negative-button.png" alt="icone menos"></button>
+
+         </div>
+
+        </article>
+
+    </div>
+
     
-</section>
+
+        </section>
+
+        <section class="container-blocks-status">
+
+            <div class="temperature-block">
+
+            </div>
+
+            <div class="umidity-block">
+
+            </div>
+
+            <div class="power-block">
+
+            </div>
+
+            <div class="current-block">
+
+            </div>
+
+
+
+        </section>
+    </section>
 
 <script src="script.js"></script>
     
