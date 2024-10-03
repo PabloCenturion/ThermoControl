@@ -30,11 +30,16 @@ background-color: #343A40;
 align-items: center;
 color: #CED4DA;
 
+height: 56px;
+
+
 
 }
 
 
 .logo{
+
+    padding-top: 15px;
 
     font-weight: 600;
 
@@ -49,17 +54,15 @@ nav a{
 
 .container-display-info{
 
-    padding-top: 20px;
+    padding-top: 35px;
     padding-left: 90px;
 
 }
 
 .title{
 
-    font-size: 28px;
-
-    font-weight: 600; /*semi-bold*/
-    font-style: italic;
+    font-size: 24px;
+    font-weight: 600; 
     color: white;
 
 }
