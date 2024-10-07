@@ -35,6 +35,11 @@ height: 56px;
 
 
 }
+nav :hover{
+    text-decoration: underline;
+    color: rgb(136, 136, 136);
+    transition: 0.2s;
+}
 
 
 .logo{
