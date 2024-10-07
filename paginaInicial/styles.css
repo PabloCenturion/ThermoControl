@@ -50,6 +50,11 @@ nav a{
     color: #CED4DA;
 
 }
+nav :hover{
+    text-decoration: underline;
+    color: rgb(136, 136, 136);
+    transition: 0.2s;
+}
 
 .container-display-info{
 
