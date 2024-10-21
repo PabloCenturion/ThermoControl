@@ -107,7 +107,7 @@
         /*Aqui, você define o endereço IP do Arduino (ou qualquer dispositivo conectado)
         que estará servindo os dados.*/
 
-        const arduinoIP = 'http://10.35.223.212'; // Substitua pelo IP do seu Arduino
+        const arduinoIP = 'http://192.168.181.6/'; 
 
         /*Esta função é assíncrona (usando async), o que significa que ela pode aguardar
          operações que levam tempo (como fazer uma requisição a outro servidor).*/
@@ -117,7 +117,6 @@
             try {
 
                 /*Aqui, o código usa fetch para fazer uma requisição HTTP ao IP do Arduino
-                
                 O await faz com que o JavaScript espere a resposta do Arduino antes de
                 continuar com a execução.*/
 
@@ -136,16 +135,17 @@
                 }
 
                 //Conversão da resposta em JSON
-
                 /*utilização do json() pois estamos pegando dados de uma requisição HTTP e 
                 transformando num objeto JavaScript que pode ser manipulado no código.*/
 
                 const dado = await respostaArduino.json();
+                console.log(dado); // Verifique a estrutura dos dados
 
-                document.getElementById('status-temperature').innerText = `${dado.temperatura.toFixed(2)}°C`
-                document.getElementById('status-humidity').innerText = `${dado.umidade.toFixed(2)}%`
-                document.getElementById('status-power').innerText = `${dado.potencia.toFixed(2)}W`
-                document.getElementById('status-current').innerText = `${dado.corrente.toFixed(2)}A`
+
+                document.getElementById('status-temperature').innerHTML = `${dado.temperatura}°C`
+                document.getElementById('status-umidity').innerHTML = `${dado.umidade}%`
+                document.getElementById('status-power').innerHTML = `${dado.potencia}W`
+                document.getElementById('status-current').innerHTML = `${dado.corrente}A`
 
             
         /*Se algum erro ocorrer durante a requisição 
@@ -157,14 +157,16 @@
             }
         }
 
-        /* O setInterval chama a função buscarSensorDados a cada 5.000 milissegundos (5 segundos),
+
+        /* O setInterval chama a função buscarSensorDados a cada 5 segundos,
         garantindo que a página seja atualizada automaticamente com as leituras mais recentes do Arduino
         a cada 5 segundos.*/
-
         setInterval(buscarSensorDados, 5000);
 
         // Busca os dados imediatamente ao carregar a página
         window.onload = buscarSensorDados;
+
+
     </script>
 
 </body>
