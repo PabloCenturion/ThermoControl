@@ -101,6 +101,36 @@
 
     </section>
 
+    <script src="/paginaInicial/script.js"></script>
+
+    <script>
+
+
+        console.log(dado)
+
+       function definindoAlerta(){
+
+     let temperaturaMax = document.getElementById("temp-good-max").value
+
+     temperaturaMax = parseFloat(temperaturaMax);
+
+    if (dado.temperatura > temperaturaMax) {
+                alert("Temperatura Muito Alta");
+            }
+        }
+
+        // Função para chamar a verificação de alerta após carregar os dados
+        function carregarConfiguracoes() {
+            console.log(dado); // Verifica se os dados estão sendo carregados corretamente
+            definindoAlerta(); // Verifica se deve exibir o alerta
+        }
+
+        // Chama a função quando a página carrega
+        window.onload = carregarConfiguracoes;
+
+
+    </script>
+
     
 </body>
 </html>
