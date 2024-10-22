@@ -71,14 +71,14 @@
 
             <div class="temperature-block">
                 <p class="temp-title"><i class="bi bi-thermometer-half thermometer-size"></i>Temperatura:</p>
-                <h2 id="status-temperature" class="mold-text-center">Nan°C</h2>
+                <h2 id="status-temperature" class="mold-text-center">°C</h2>
 
             </div>
 
             <div class="umidity-block">
 
                 <p class="umi-title"><i class="bi bi-droplet droplet-size"></i>Umidade:</p>
-                <h2 id="status-umidity" class="mold-text-center">Nan%</h2>
+                <h2 id="status-umidity" class="mold-text-center">%</h2>
 
 
             </div>
@@ -86,7 +86,7 @@
             <div class="power-block">
 
                 <p class="pwr-title"><i class="bi bi-lightning flash-size"></i>Potência:</p>
-                <h2 id="status-power" class="mold-text-center">NanW</h2>
+                <h2 id="status-power" class="mold-text-center">W</h2>
 
 
             </div>
@@ -94,7 +94,7 @@
             <div class="current-block">
 
                 <p class="crt-title"><i class="bi bi-outlet outlet-size"></i>Corrente:</p>
-                <h2 id="status-current" class="mold-text-center">NanA</h2>
+                <h2 id="status-current" class="mold-text-center">A</h2>
 
 
             </div>
@@ -119,7 +119,6 @@
                 /*Aqui, o código usa fetch para fazer uma requisição HTTP ao IP do Arduino
                 O await faz com que o JavaScript espere a resposta do Arduino antes de
                 continuar com a execução.*/
-
                 const respostaArduino = await fetch(arduinoIP);
 
                 /*Caso a requisição não tenha sido bem-sucedida (por exemplo, o Arduino está fora do ar),
@@ -139,15 +138,14 @@
                 transformando num objeto JavaScript que pode ser manipulado no código.*/
 
                 const dado = await respostaArduino.json();
+
                 console.log(dado); // Verifique a estrutura dos dados
 
+                document.getElementById('status-temperature').innerText = `${dado.temperatura}°C`
+                document.getElementById('status-umidity').innerText = `${dado.umidade}%`
+                document.getElementById('status-power').innerText = `${dado.potencia}W`
+                document.getElementById('status-current').innerText = `${dado.corrente}A`
 
-                document.getElementById('status-temperature').innerHTML = `${dado.temperatura}°C`
-                document.getElementById('status-umidity').innerHTML = `${dado.umidade}%`
-                document.getElementById('status-power').innerHTML = `${dado.potencia}W`
-                document.getElementById('status-current').innerHTML = `${dado.corrente}A`
-
-            
         /*Se algum erro ocorrer durante a requisição 
         (como o Arduino estar offline ou o servidor responder com um erro)
         o código captura o erro e o exibe no console do navegador, permitindo depurar a situação.*/
@@ -163,8 +161,11 @@
         a cada 5 segundos.*/
         setInterval(buscarSensorDados, 5000);
 
+
         // Busca os dados imediatamente ao carregar a página
         window.onload = buscarSensorDados;
+
+
 
 
     </script>
