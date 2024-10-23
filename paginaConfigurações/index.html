@@ -105,26 +105,83 @@
 
     <script>
 
+        //função global para criar alertas do bootstrap
 
-        console.log(dado)
+        function createAlert(textAlert,typeAlert){
+        
+        const alertsAction = document.getElementById("alertsAction");
+    
+        const alert = `
+            <div class="alert alert-${typeAlert} alert-dismissible fade show" role="alert">
+              ${textAlert}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>`;
+    
+            alertsAction.innerHTML = alert;
+    
+    }
 
-       function definindoAlerta(){
 
-     let temperaturaMax = document.getElementById("temp-good-max").value
+       function definindoAlertaTemperaturaAlta(){
+
+     let temperaturaMax = document.getElementById("temp-high").value
 
      temperaturaMax = parseFloat(temperaturaMax);
 
     if (dado.temperatura > temperaturaMax) {
-                alert("Temperatura Muito Alta");
-            }
+
+        createAlert("Temperatura Muito alta !!", "danger")
+
+    }
         }
 
-        function carregarConfiguracoes() {
-            console.log(dado); // Verifica se os dados estão sendo carregados corretamente
-            definindoAlerta(); // Verifica se deve exibir o alerta
-        }
+        function definindoTemperaturaAtipica(){
 
-        window.onload = carregarConfiguracoes;
+            let temperaturaMin = document.getElementById("temp-good-min").value
+            let temperaturaMax = document.getElementById("temp-good-max").value
+
+            temperaturaMin = parseFloat(temperaturaMin);
+            temperaturaMax = parseFloat(temperaturaMax);
+
+            if( dado.temperatura < temperaturaMin || dado.temperatura > temperaturaMax){
+
+                createAlert("Temperatura Atipica !!", "warning")
+        }
+    }
+
+    function definindoAlertaUmidadeAlta(){
+
+        let umidadeHigh = document.getElementById("humidity-high").value
+
+        umidadeHigh = parseFloat(umidadeHigh);
+
+        if (dado.umidade > umidadeHigh) {
+
+        createAlert("Umidade Muito Alta !!", "danger")
+
+}
+
+
+
+    }
+
+    function definindoUmidadeAtipica(){
+
+        let umidadeHigh = document.getElementById("humidity-high").value
+        let umidadeMax = document.getElementById("humidity-good-max").value
+
+        umidadeHigh = parseFloat(umidadeHigh);
+        umidadeMax = parseFloat(umidadeMax);
+
+        if(dado.umidade > umidadeMax && dado.umidade < umidadeHigh){
+
+            createAlert("Umidade Atipica !!", "warning")
+
+    }
+
+}
+
+
 
 
     </script>

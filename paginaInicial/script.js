@@ -1,7 +1,7 @@
  /*Aqui, você define o endereço IP do Arduino (ou qualquer dispositivo conectado)
         que estará servindo os dados.*/
 
-        const arduinoIP = 'http://192.168.181.6/'; 
+        const arduinoIP = 'http://192.168.1.214/'; 
 
         /*Esta função é assíncrona (usando async), o que significa que ela pode aguardar
          operações que levam tempo (como fazer uma requisição a outro servidor).*/
@@ -37,8 +37,8 @@
 
                 document.getElementById('status-temperature').innerText = `${dado.temperatura}°C`
                 document.getElementById('status-umidity').innerText = `${dado.umidade}%`
-                document.getElementById('status-power').innerText = `${dado.potencia}W`
-                document.getElementById('status-current').innerText = `${dado.corrente}A`
+                document.getElementById('status-power').innerText = `${dado.potencia.toFixed(2)}W`
+                document.getElementById('status-current').innerText = `${dado.corrente.toFixed(2)}A`
 
         /*Se algum erro ocorrer durante a requisição 
         o código captura o erro e o exibe no console do navegador, permitindo depurar a situação.*/
