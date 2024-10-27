@@ -39,7 +39,7 @@ function pegandoDataTempoAtual() {
 
     if (dado.temperatura > temperaturaMax) {
 
-        createAlert("Temperatura Muito alta !!", "danger")
+        createAlert("Temperatura Muito alta !!", "danger", dado.temperatura);
 
     }
         }
@@ -54,7 +54,7 @@ function pegandoDataTempoAtual() {
 
             if(dado.temperatura < temperaturaMin || dado.temperatura > temperaturaMax){
 
-                createAlert("Temperatura Atipica !!", "warning")
+                createAlert("Temperatura Atipica !!", "warning", dado.temperatura)
         }
     }
 
@@ -66,7 +66,7 @@ function pegandoDataTempoAtual() {
 
         if (dado.umidade > umidadeHigh) {
 
-        createAlert("Umidade Muito Alta !!", "danger")
+        createAlert("Umidade Muito Alta !!", "danger", dado.umidade);
 }
     }
     function definindoUmidadeAtipica(){
@@ -79,13 +79,13 @@ function pegandoDataTempoAtual() {
 
         if(dado.umidade > umidadeMax && dado.umidade < umidadeHigh){
 
-            createAlert("Umidade Atipica !!", "warning")
+            createAlert("Umidade Atipica !!", "warning", dado.umidade)
     }
 }
 
     function definindoEnergiaBaixa() {
     if (dado.potencia < 100) {
-        createAlert("Energia do ar-condicionado caiu!", "warning");
+        createAlert("Energia do ar-condicionado caiu!", "warning", dado.potencia);
     }
 }
 
