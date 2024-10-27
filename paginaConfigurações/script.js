@@ -15,6 +15,7 @@
 
 
 function pegandoDataTempoAtual() {
+
     const now = new Date();
     const hours = String(now.getHours()).padStart(2, '0');
     const minutes = String(now.getMinutes()).padStart(2, '0');
@@ -25,11 +26,11 @@ function pegandoDataTempoAtual() {
     return `${hours}:${minutes} - ${day}/${month}/${year}`;
 }
 
-createAlert("Temperatura Alta!", "danger", 45);
+    createAlert("Temperatura Alta!", "danger", 45);
 
     // define o horário atual
     document.getElementById("alert-time").textContent = pegandoDataTempoAtual();
-    
+
     function definindoAlertaTemperaturaAlta(){
 
      let temperaturaMax = document.getElementById("temp-high").value
@@ -82,5 +83,10 @@ createAlert("Temperatura Alta!", "danger", 45);
     }
 }
 
+    function definindoEnergiaBaixa() {
+    if (dado.potencia < 100) {
+        createAlert("Energia do ar-condicionado caiu!", "warning");
+    }
+}
 
 
