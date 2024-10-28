@@ -21,10 +21,14 @@
             <a href="/paginaInicial/index.html">Inicio</a>
             <a href="/paginaRelatorios/index.html">Relatórios</a>
             <a href="/paginaAlertasHistorico/index.html">Alertas</a>
-            <a style="text-decoration: underline;" href="/paginaConfigurações/index.html">Configurações</a>       
+            <a style="text-decoration: underline; font-weight: bold;" href="/paginaConfigurações/index.html">Configurações</a>       
         </nav>
+       
 
         <h2 class="title-page">Configurações</h2>
+
+        <div id="alertsAction"></div>
+
 
         <section class="container-settings">
 
@@ -44,6 +48,12 @@
                 <input type="number" id="temp-high" placeholder="ex: 26°C">
             </div>
 
+            <div class="container-save">
+
+            <button class="btn btn-primary" type="submit" onclick="saveChanges()">Salvar Alterações</button>
+
+        </div>
+
         </div>
 
         <div class="container-humidity">
@@ -62,6 +72,7 @@
                 <label for="humidity-high">Definição de Umidade Muito Alta:</label>
                 <input type="number" id="humidity-high" placeholder="ex: 80%">
             </div>
+
 
         </div>
 
@@ -91,14 +102,7 @@
         </div>
     </section>
 
-
         </section>
-
-        
-
-        
-
-
     </section>
 
     <script src="/paginaInicial/script.js"></script>

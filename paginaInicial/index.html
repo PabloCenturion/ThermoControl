@@ -19,7 +19,7 @@
 
     <nav>
         <p class="logo">ThermoControl</p>
-        <a  style="text-decoration: underline;" href="/paginaInicial/index.html">Inicio</a>
+        <a  style="text-decoration: underline; font-weight: bold;" href="/paginaInicial/index.html">Inicio</a>
         <a href="/paginaRelatorios/index.html">Relatórios</a>
         <a href="/paginaAlertasHistorico/index.html">Alertas</a>
         <a href="/paginaConfigurações/index.html">Configurações</a>       
@@ -31,7 +31,10 @@
     
         <div class="alerts-div">
 
-        <div id="alertsAction"></div>
+        <div id="alertTemp"></div>
+        <div id="alertHumidity"></div>
+        <div id="alertDefault"></div>
+
     </div>
 
 
@@ -89,15 +92,14 @@
 
                 <p class="crt-title"><i class="bi bi-outlet outlet-size"></i>Corrente:</p>
                 <h2 id="status-current" class="mold-text-center">A</h2>
-
-
             </div>
 
         </section>
     </section>
 
-    <script src="script.js"></script>
-    <script src="/paginaConfigurações/script.js"></script>
+    <script src="/paginaConfigurações/script.js" defer></script>
+    <script src="script.js" defer></script>
+
 
 </body>
 </html>

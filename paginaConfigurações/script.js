@@ -1,7 +1,9 @@
    //função global para criar alertas do bootstrap
 
-   function createAlert(textAlert, typeAlert, temperature) {
-    const alertsAction = document.getElementById("alertsAction");
+   function createAlert(textAlert, typeAlert, temperature, divId) {
+
+    const showingAlert = document.getElementById(`${divId}`);
+    const historyAlerts = document.getElementById("alerts-history");
 
     const alertStruct = `
         <div class="alert alert-${typeAlert} d-flex align-items-center" role="alert">
@@ -9,83 +11,98 @@
               <strong>${textAlert}: ${temperature}°C &nbsp;&nbsp;</strong>
             <small class="ms-auto">${pegandoDataTempoAtual()}</small>
         </div>`;
+    showingAlert.innerHTML = alertStruct;
 
-    alertsAction.innerHTML = alertStruct;
 }
 
 
 function pegandoDataTempoAtual() {
 
-    const now = new Date();
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    const day = String(now.getDate()).padStart(2, '0');
-    const month = String(now.getMonth() + 1).padStart(2, '0');
-    const year = now.getFullYear();
+    const agora = new Date();
+    const horas = String(agora.getHours()).padStart(2, '0');
+    const minutos = String(agora.getMinutes()).padStart(2, '0');
+    const dia = String(agora.getDate()).padStart(2, '0');
+    const mes = String(agora.getMonth() + 1).padStart(2, '0');
+    const ano = agora.getFullYear();
     
-    return `${hours}:${minutes} - ${day}/${month}/${year}`;
+    return `${horas}:${minutos} - ${dia}/${mes}/${ano}`;
 }
 
-    createAlert("Temperatura Alta!", "danger", 45);
+    function saveChanges() {
 
-    // define o horário atual
-    document.getElementById("alert-time").textContent = pegandoDataTempoAtual();
+        const tempMin = parseFloat(document.getElementById("temp-good-min").value);
+        const tempMax = parseFloat(document.getElementById("temp-good-max").value);
+        const tempHigh = parseFloat(document.getElementById("temp-high").value);
+        const humidityMin = parseFloat(document.getElementById("humidity-good-min").value);
+        const humidityMax = parseFloat(document.getElementById("humidity-good-max").value);
+        const humidityHigh = parseFloat(document.getElementById("humidity-high").value);
+    
+        const alertEnergy = document.getElementById("alert-energy").checked;
+        const alertAC = document.getElementById("alert-ac").checked;
+        const alertTempAtypical = document.getElementById("alert-temp").checked;
+        const alertHumidityAtypical = document.getElementById("alert-humidity").checked;
+    
+        localStorage.setItem('tempMin', tempMin);
+        localStorage.setItem('tempMax', tempMax);
+        localStorage.setItem('tempHigh', tempHigh);
+        localStorage.setItem('humidityMin', humidityMin);
+        localStorage.setItem('humidityMax', humidityMax);
+        localStorage.setItem('humidityHigh', humidityHigh);
+        localStorage.setItem('alertEnergy', alertEnergy);
+        localStorage.setItem('alertAC', alertAC);
+        localStorage.setItem('alertTempAtypical', alertTempAtypical);
+        localStorage.setItem('alertHumidityAtypical', alertHumidityAtypical);
+    
+        alert("Configurações salvas com sucesso");
+    }
 
-    function definindoAlertaTemperaturaAlta(){
+    // funções de alerta
+    function definindoAlertaTemperaturaAlta(dado){
 
-     let temperaturaMax = document.getElementById("temp-high").value
+        const tempHigh = parseFloat(localStorage.getItem('tempHigh'));
 
-     temperaturaMax = parseFloat(temperaturaMax);
+    if (dado.temperatura >= tempHigh) {
 
-    if (dado.temperatura > temperaturaMax) {
-
-        createAlert("Temperatura Muito alta !!", "danger", dado.temperatura);
+        createAlert("Temperatura Muito alta !!", "danger", `${dado.temperatura}°C`, "alertTemp");
 
     }
         }
 
-        function definindoTemperaturaAtipica(){
+        function definindoTemperaturaAtipica(dado){
 
-            let temperaturaMin = document.getElementById("temp-good-min").value
-            let temperaturaMax = document.getElementById("temp-good-max").value
+            const tempMax = parseFloat(localStorage.getItem('tempMax'));
+            const tempHigh = parseFloat(localStorage.getItem('tempHigh'));
 
-            temperaturaMin = parseFloat(temperaturaMin);
-            temperaturaMax = parseFloat(temperaturaMax);
+            if(dado.temperatura > tempMax && dado.temperatura < tempHigh){
 
-            if(dado.temperatura < temperaturaMin || dado.temperatura > temperaturaMax){
-
-                createAlert("Temperatura Atipica !!", "warning", dado.temperatura)
-        }
+                createAlert("Temperatura Atipica !!", "warning", `${dado.temperatura}°C`, "alertTemp");
+            }
+    
     }
 
-    function definindoAlertaUmidadeAlta(){
+    function definindoAlertaUmidadeAlta(dado){
 
-        let umidadeHigh = document.getElementById("humidity-high").value
+        const humidityHigh = parseFloat(localStorage.getItem('humidityHigh'));
 
-        umidadeHigh = parseFloat(umidadeHigh);
+        if (dado.umidade >= humidityHigh) {
 
-        if (dado.umidade > umidadeHigh) {
-
-        createAlert("Umidade Muito Alta !!", "danger", dado.umidade);
+        createAlert("Umidade Muito Alta !!", "danger", `${dado.umidade}%`, "alertHumidity");
 }
     }
-    function definindoUmidadeAtipica(){
+    function definindoUmidadeAtipica(dado){
+        
+        const humidityMax = parseFloat(localStorage.getItem('humidityMax'));
+        const humidityHigh = parseFloat(localStorage.getItem('humidityHigh'));
 
-        let umidadeHigh = document.getElementById("humidity-high").value
-        let umidadeMax = document.getElementById("humidity-good-max").value
+        if(dado.umidade > humidityMax && dado.umidade < humidityHigh){
 
-        umidadeHigh = parseFloat(umidadeHigh);
-        umidadeMax = parseFloat(umidadeMax);
-
-        if(dado.umidade > umidadeMax && dado.umidade < umidadeHigh){
-
-            createAlert("Umidade Atipica !!", "warning", dado.umidade)
+            createAlert("Umidade Atipica !!", "warning", `${dado.umidade}%`, "alertHumidity");
     }
 }
 
     function definindoEnergiaBaixa() {
     if (dado.potencia < 100) {
-        createAlert("Energia do ar-condicionado caiu!", "warning", dado.potencia);
+        createAlert("Energia do ar-condicionado caiu!", "warning", `${dado.potencia.toFixed(2)}W`, "alertDefault");
     }
 }
 

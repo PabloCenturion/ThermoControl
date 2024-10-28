@@ -126,9 +126,6 @@ label{
 
 
 input{
-
-
-
     width: 100px;
     height: 30px;
 }
@@ -136,17 +133,14 @@ input{
 
 .inputs-couple {
     display: flex;
-    flex-wrap: wrap; /* Quebra os inputs na linha seguinte, se necessário */
-    gap: 10px; /* Espaçamento entre os inputs no par */
+    flex-wrap: wrap; 
+    gap: 10px; 
 }
 
 .container-temperature{
 
     display: flex;
-
     flex-direction: column;
-
-
     flex: 1;
 }
 
@@ -158,4 +152,10 @@ input{
 
 
     flex:1;
+}
+
+.container-save{
+
+margin-top: 20px;
+
 }
