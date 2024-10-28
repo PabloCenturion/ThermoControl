@@ -28,9 +28,7 @@
     <section class="container-display-info">
 
         <p class="title">Status Da 'Sala De Servidores Da Uniamerica'</p>
-    
         <div class="alerts-div">
-
         <div id="alertTemp"></div>
         <div id="alertHumidity"></div>
         <div id="alertDefault"></div>
@@ -40,7 +38,15 @@
 
     <div class="container-blocks">
 
-        <article class="ac-block">
+        <div class="block-alert-non">
+            <div id="alertNoWarning" class="alert non-info d-flex align-items-center" role="alert">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                  <strong><h5>Sem Avisos No Momento</h5></strong>
+                <small class="ms-auto"></small>
+            </div>
+        </div>
+
+        <!-- <article class="ac-block">
 
             <p class="ac-title"><img src="/paginaInicial/imgsDoSite/airConditioner.png" alt="Icone Ar Condicionado"> Ar Condicionado</p>
         
@@ -58,7 +64,7 @@
 
             </div>
 
-        </article>
+        </article> -->
 
     </div>
 

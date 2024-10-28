@@ -1,20 +1,56 @@
-   //função global para criar alertas do bootstrap
+function createAlert(textAlert, typeAlert, temperature, divId) {
 
-   function createAlert(textAlert, typeAlert, temperature, divId) {
-
-    const showingAlert = document.getElementById(`${divId}`);
-    const historyAlerts = document.getElementById("alerts-history");
+    const showingAlert = document.getElementById(divId);
+    const divAlert  =  document.getElementById("alerts-history");
 
     const alertStruct = `
         <div class="alert alert-${typeAlert} d-flex align-items-center" role="alert">
             <i class="bi bi-exclamation-triangle-fill me-2"></i>
-              <strong>${textAlert}: ${temperature}°C &nbsp;&nbsp;</strong>
-            <small class="ms-auto">${pegandoDataTempoAtual()}</small>
-        </div>`;
-    showingAlert.innerHTML = alertStruct;
+              <strong><h5>${textAlert}: ${temperature}°C &nbsp;&nbsp;</strong> 
+              <small class="ms-auto">${pegandoDataTempoAtual()}</small></h5>
+        </div>`
+
+    showingAlert.innerHTML = alertStruct
+
+    divAlert.innerHTML += alertStruct
+    saveAlertToLocalStorage(alertStruct)
 
 }
 
+function saveAlertToLocalStorage(alertStruct) {
+
+
+//a função começa pegando com uma tentativa(pois t) de pegar alertas armazenados e converte de string para objetos, pois o alertStruct não é 100% string
+
+    let alerts = JSON.parse(localStorage.getItem("alerts")) || [];
+
+    console.log(alerts); //printando array de alertas para verificar se o alertStruct foi convertido corretamente
+
+//salva o novo alerta ao array de alertas e converte de volta a string para printa-los dps na função onload
+    alerts.push(alertStruct);
+    localStorage.setItem("alerts", JSON.stringify(alerts));
+
+}
+
+
+// Função para carregar os alertas do localStorage ao carregar a página
+function loadAlertsFromLocalStorage() {
+
+    //pegando o id da div que vai mostrar o historico de alertas
+    const divAlert = document.getElementById("alerts-history");
+
+    //requisição de array de alertas do localStorage 
+    const alerts = JSON.parse(localStorage.getItem("alerts")) || [];
+
+    //estrutura de repetição forEach para percorrer o array de alertas e printalos todos na tela quando a tela for recarregada
+    alerts.forEach(alert => {
+        divAlert.innerHTML += alert;
+    });
+}
+
+window.onload = function() {
+    loadAlertsFromLocalStorage();
+};
 
 function pegandoDataTempoAtual() {
 
@@ -60,10 +96,14 @@ function pegandoDataTempoAtual() {
     function definindoAlertaTemperaturaAlta(dado){
 
         const tempHigh = parseFloat(localStorage.getItem('tempHigh'));
+        const divNonInfo = document.getElementById("alertNoWarning");        
 
     if (dado.temperatura >= tempHigh) {
 
+        divNonInfo.style.display = "none";
+
         createAlert("Temperatura Muito alta !!", "danger", `${dado.temperatura}°C`, "alertTemp");
+        
 
     }
         }
@@ -72,8 +112,12 @@ function pegandoDataTempoAtual() {
 
             const tempMax = parseFloat(localStorage.getItem('tempMax'));
             const tempHigh = parseFloat(localStorage.getItem('tempHigh'));
+            const divNonInfo = document.getElementById("alertNoWarning");
+
 
             if(dado.temperatura > tempMax && dado.temperatura < tempHigh){
+
+                divNonInfo.style.display = "none";
 
                 createAlert("Temperatura Atipica !!", "warning", `${dado.temperatura}°C`, "alertTemp");
             }
@@ -83,8 +127,11 @@ function pegandoDataTempoAtual() {
     function definindoAlertaUmidadeAlta(dado){
 
         const humidityHigh = parseFloat(localStorage.getItem('humidityHigh'));
+        const divNonInfo = document.getElementById("alertNoWarning");
 
         if (dado.umidade >= humidityHigh) {
+
+            divNonInfo.style.display = "none";
 
         createAlert("Umidade Muito Alta !!", "danger", `${dado.umidade}%`, "alertHumidity");
 }
@@ -94,16 +141,29 @@ function pegandoDataTempoAtual() {
         const humidityMax = parseFloat(localStorage.getItem('humidityMax'));
         const humidityHigh = parseFloat(localStorage.getItem('humidityHigh'));
 
+        const divNonInfo = document.getElementById("alertNoWarning");
+
+
         if(dado.umidade > humidityMax && dado.umidade < humidityHigh){
+
+            divNonInfo.style.display = "none"
 
             createAlert("Umidade Atipica !!", "warning", `${dado.umidade}%`, "alertHumidity");
     }
 }
 
-    function definindoEnergiaBaixa() {
+    function definindoEnergiaBaixa(dado) {
+
+        const divNonInfo = document.getElementById("alertNoWarning");
+
     if (dado.potencia < 100) {
+
+        const divNonInfo = document.getElementById("alertNoWarning");
+
         createAlert("Energia do ar-condicionado caiu!", "warning", `${dado.potencia.toFixed(2)}W`, "alertDefault");
     }
 }
+
+
 
 
