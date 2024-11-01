@@ -192,7 +192,9 @@ nav :hover{
 
     border: white 1px solid;
     background-color: #386dbd;
-    border-radius: 10%;
+
+    /* top-left | top-right | bottom-right | bottom-left */
+    border-radius: 23px 23px 4px 4px;
 
     margin:auto;
     padding-right: 18px;
@@ -226,7 +228,7 @@ nav :hover{
     font-stretch: condensed;
     border: white 1px solid;
     background-color: #386dbd;
-    border-radius: 10%;
+    border-radius: 23px 23px 4px 4px;
 
     margin:auto;
     padding-right: 18px;
@@ -268,7 +270,7 @@ nav :hover{
     font-stretch: condensed;
     border: white 1px solid;
     background-color: #386dbd;
-    border-radius: 10%;
+    border-radius: 23px 23px 4px 4px;
 
     margin:auto;
     padding-right: 15px;
@@ -309,7 +311,7 @@ nav :hover{
     font-stretch: condensed;
     border: white 1px solid;
     background-color: #386dbd;
-    border-radius: 10%;
+    border-radius: 23px 23px 4px 4px;
 
     margin:auto;
     padding-right: 10px;
