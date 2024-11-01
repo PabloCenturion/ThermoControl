@@ -38,7 +38,7 @@ function loadAlertsFromLocalStorage() {
 
     //pegando o id da div que vai mostrar o historico de alertas
     const divAlert = document.getElementById("alerts-history");
-
+''
     //requisição de array de alertas do localStorage 
     const alerts = JSON.parse(localStorage.getItem("alerts")) || [];
 

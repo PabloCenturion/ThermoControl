@@ -5,8 +5,8 @@
 
 body{
 
-    background-color: #172B37;
-    color:white;
+    background-color: #c2b6b6;
+    color: #1d1214;
    
     margin:0;
     background-size:auto;
@@ -14,9 +14,7 @@ body{
 
 }
 
-h2 {
-    font-size: 24px;
-}
+
 
 .title-page{
 
@@ -24,44 +22,18 @@ h2 {
     padding-left: 90px;
     padding-right: 90px;
 
-
-}
-
-
-nav{
-
-overflow: hidden;
-
-
-padding-left: 35px;
-
-display: flex;
-flex-direction: row;
-gap: 35px;
-background-color: #343A40;
-
-align-items: center;
-color: #CED4DA;
-
-height: 56px;
-
-
-
-}
-nav :hover{
-    text-decoration: underline;
-    color: rgb(136, 136, 136);
-    transition: 0.2s;
-}
-
-
-.logo{
-
     font-weight: 600;
-    padding-top: 15px;
+    font-stretch: condensed;
+    font-size: 4vh;
+    color: #1d1214;
+    filter: drop-shadow(0 0 0.75rem rgb(255, 255, 255));
 
 
 }
+
+
+
+
 
 nav a{
 
@@ -156,6 +128,27 @@ input{
 
 .container-save{
 
-margin-top: 20px;
+padding-left: 90px;
 
+}
+
+.nav-color{
+    background-color: #0f4571 !important;
+    
+    
+    
+    
+    }
+    
+    .nav-color .navbar-nav .nav-link,
+      .nav-color .navbar-brand {
+        color: white !important;
+      }
+    
+
+@media (max-width: 768px) {
+    .container-settings {
+        gap: 20px;
+        flex-direction: column;
+    }
 }

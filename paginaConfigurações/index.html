@@ -16,14 +16,22 @@
 <body>
     <section class="container-main">
         
-        <nav>
-            <p class="logo">ThermoControl</p>
-            <a href="/paginaInicial/index.html">Inicio</a>
-            <a href="/paginaRelatorios/index.html">Relatórios</a>
-            <a href="/paginaAlertasHistorico/index.html">Alertas</a>
-            <a style="text-decoration: underline; font-weight: bold;" href="/paginaConfigurações/index.html">Configurações</a>       
-        </nav>
-       
+        <nav class="navbar navbar-expand-lg bg-body-tertiary nav-color">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">ThermoControl</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                  <a class="nav-link active" aria-current="page" href="/paginaInicial/index.html">Inicio</a>
+                  <a class="nav-link" href="/paginaRelatorios/index.html">Relatórios</a>
+                  <a class="nav-link" href="/paginaAlertasHistorico/index.html">Alertas</a>
+                  <a class="nav-link" href="/paginaConfigurações/index.html">Configurações</a>
+                </div>
+              </div>
+            </div>
+          </nav>
 
         <h2 class="title-page">Configurações</h2>
 
@@ -31,6 +39,7 @@
 
 
         <section class="container-settings">
+            
 
             <div class="container-temperature">
 
@@ -47,12 +56,6 @@
                 <label for="temp-high">Definição de Temperatura Muito Alta:</label>
                 <input type="number" id="temp-high" placeholder="ex: 26°C">
             </div>
-
-            <div class="container-save">
-
-            <button class="btn btn-primary" type="submit" onclick="saveChanges()">Salvar Alterações</button>
-
-        </div>
 
         </div>
 
@@ -102,6 +105,12 @@
 
         </section>
     </section>
+    <div class="container-save">
+
+        <button class="btn btn-primary" type="submit" onclick="saveChanges()">Salvar Alterações</button>
+
+    </div>
+
 
     <script src="/paginaInicial/script.js"></script>
     <script src="/paginaConfigurações/script.js"></script>
