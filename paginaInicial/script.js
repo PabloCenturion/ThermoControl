@@ -30,3 +30,22 @@ async function buscarSensorDados() {
 setInterval(buscarSensorDados, 5000);
 
 window.onload = buscarSensorDados;
+
+
+
+
+    const alertTemp = document.getElementById('alertTemp');
+    const alertHumidity = document.getElementById('alertHumidity');
+    const alertNonInformation = document.querySelector(".container-blocks");
+
+        const structNonAlert = `
+            <div class="block-alert-non">
+            <div id="alertNoWarning" class="alert non-info d-flex align-items-center" role="alert">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                  <strong><h5>Sem Avisos No Momento</h5></strong>
+                <small class="ms-auto"></small>
+            </div>
+        </div>`;
+
+            alertTemp.innerHTML = structNonAlert;
+

@@ -1,7 +1,6 @@
 function createAlert(textAlert, typeAlert, temperature, divId) {
 
     const showingAlert = document.getElementById(divId);
-    const divAlert  =  document.getElementById("alerts-history");
 
     const alertStruct = `
         <div class="alert alert-${typeAlert} d-flex align-items-center" role="alert">
@@ -12,11 +11,10 @@ function createAlert(textAlert, typeAlert, temperature, divId) {
 
     showingAlert.innerHTML = alertStruct
 
-    divAlert.innerHTML += alertStruct
-    saveAlertToLocalStorage(alertStruct)
+    //saveAlertToLocalStorage(alertStruct)
 
 }
-
+/*
 function saveAlertToLocalStorage(alertStruct) {
 
 
@@ -31,9 +29,10 @@ function saveAlertToLocalStorage(alertStruct) {
     localStorage.setItem("alerts", JSON.stringify(alerts));
 
 }
+    */
 
 
-// Função para carregar os alertas do localStorage ao carregar a página
+/* Função para carregar os alertas do localStorage ao carregar a página
 function loadAlertsFromLocalStorage() {
 
     //pegando o id da div que vai mostrar o historico de alertas
@@ -50,7 +49,7 @@ function loadAlertsFromLocalStorage() {
 
 window.onload = function() {
     loadAlertsFromLocalStorage();
-};
+};*/
 
 function pegandoDataTempoAtual() {
 
@@ -96,11 +95,9 @@ function pegandoDataTempoAtual() {
     function definindoAlertaTemperaturaAlta(dado){
 
         const tempHigh = parseFloat(localStorage.getItem('tempHigh'));
-        const divNonInfo = document.getElementById("alertNoWarning");        
 
     if (dado.temperatura >= tempHigh) {
 
-        divNonInfo.style.display = "none";
 
         createAlert("Temperatura Muito alta !!", "danger", `${dado.temperatura}°C`, "alertTemp");
         
@@ -112,12 +109,10 @@ function pegandoDataTempoAtual() {
 
             const tempMax = parseFloat(localStorage.getItem('tempMax'));
             const tempHigh = parseFloat(localStorage.getItem('tempHigh'));
-            const divNonInfo = document.getElementById("alertNoWarning");
 
 
             if(dado.temperatura > tempMax && dado.temperatura < tempHigh){
 
-                divNonInfo.style.display = "none";
 
                 createAlert("Temperatura Atipica !!", "warning", `${dado.temperatura}°C`, "alertTemp");
             }
@@ -127,11 +122,9 @@ function pegandoDataTempoAtual() {
     function definindoAlertaUmidadeAlta(dado){
 
         const humidityHigh = parseFloat(localStorage.getItem('humidityHigh'));
-        const divNonInfo = document.getElementById("alertNoWarning");
 
         if (dado.umidade >= humidityHigh) {
 
-            divNonInfo.style.display = "none";
 
         createAlert("Umidade Muito Alta !!", "danger", `${dado.umidade}%`, "alertHumidity");
 }
@@ -141,12 +134,10 @@ function pegandoDataTempoAtual() {
         const humidityMax = parseFloat(localStorage.getItem('humidityMax'));
         const humidityHigh = parseFloat(localStorage.getItem('humidityHigh'));
 
-        const divNonInfo = document.getElementById("alertNoWarning");
 
 
         if(dado.umidade > humidityMax && dado.umidade < humidityHigh){
 
-            divNonInfo.style.display = "none"
 
             createAlert("Umidade Atipica !!", "warning", `${dado.umidade}%`, "alertHumidity");
     }
@@ -154,11 +145,9 @@ function pegandoDataTempoAtual() {
 
     function definindoEnergiaBaixa(dado) {
 
-        const divNonInfo = document.getElementById("alertNoWarning");
 
     if (dado.potencia < 100) {
 
-        const divNonInfo = document.getElementById("alertNoWarning");
 
         createAlert("Energia do ar-condicionado caiu!", "warning", `${dado.potencia.toFixed(2)}W`, "alertDefault");
     }
