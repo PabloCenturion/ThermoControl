@@ -1,4 +1,4 @@
-const arduinoIP = 'http://192.168.1.214/';
+const arduinoIP = 'http://10.35.221.159/';
 
 /* Função para buscar dados do Arduino */
 async function buscarSensorDados() {

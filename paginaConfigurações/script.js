@@ -16,6 +16,7 @@ function createAlert(textAlert, typeAlert, temperature, divId) {
 }
 
 // inicializando o localStorage com um array vazio
+
 if (!localStorage.getItem("alerts")) {
     localStorage.setItem("alerts", JSON.stringify([])); // Inicializa com um array vazio
     //uso do JSON.stringify para transformar o array em uma string, pois o localStorage não consegue armazenar uma estrutura array ou objetos.
@@ -24,37 +25,34 @@ if (!localStorage.getItem("alerts")) {
 
 function saveAlertToLocalStorage(alertStruct) {
 
-
     let alerts = JSON.parse(localStorage.getItem("alerts")); // Recupera o array já inicializado
     //usando jsonParse pois tranforma a string em um (array/objeto) para podermos manipula-lo
 
     alerts.push(alertStruct); // Adiciona o novo alerta ao array de
+    
     localStorage.setItem("alerts", JSON.stringify(alerts)); // Atualiza o localStorage
 }
-
-    
 
 
 function loadAlertsFromLocalStorage() {
 
     //pegando o id da div que vai mostrar o historico de alertas
-    const divAlertStorage = document.getElementById("adiv-alert-storage");
+    const divAlertStorage = document.getElementById("div-alert-storage");
 
     //requisição de array de alertas do localStorage 
     const alertsStorage = JSON.parse(localStorage.getItem("alerts"));
 
     alertsStorage.forEach(alert => {
+
         divAlertStorage.innerHTML += alert;
+
     });
 
-        
 }
 
- //Função para carregar os alertas do localStorage ao carregar a página
-window.onload = function() {
-    console.log("Carregando os alertas do localStorage...");
-    loadAlertsFromLocalStorage();
-};
+
+loadAlertsFromLocalStorage();
+
 
 function pegandoDataTempoAtual() {
 
@@ -103,12 +101,11 @@ function pegandoDataTempoAtual() {
 
     if (dado.temperatura >= tempHigh) {
 
-
         createAlert("Temperatura Muito alta !!", "danger", `${dado.temperatura}°C`, "alertTemp");
-        
 
     }
         }
+
 
         function definindoTemperaturaAtipica(dado){
 

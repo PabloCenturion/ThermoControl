@@ -36,19 +36,7 @@ nav a{
 }
 
 
-.container-alerts{
 
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-
-    align-items: center;    
-
-    padding-top: 35px;
-    padding-left: 90px;
-    padding-right: 90px;
-    
-}
 
 .title-page{
 
@@ -123,3 +111,25 @@ font-size: 40px;
         color: white !important;
       }
     
+
+      .container-alerts{
+
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 40px;
+        justify-content: center;
+
+        align-items: center;    
+
+        padding-top: 35px;
+       
+
+      }
+
+      #div-alert-storage{
+
+        
+
+        width: 580px;
+
+      }
