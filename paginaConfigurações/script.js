@@ -5,51 +5,56 @@ function createAlert(textAlert, typeAlert, temperature, divId) {
     const alertStruct = `
         <div class="alert alert-${typeAlert} d-flex align-items-center" role="alert">
             <i class="bi bi-exclamation-triangle-fill me-2"></i>
-              <strong><h5>${textAlert}: ${temperature}°C &nbsp;&nbsp;</strong> 
-              <small class="ms-auto">${pegandoDataTempoAtual()}</small></h5>
+              <h5><strong>${textAlert}: ${temperature}°C &nbsp;&nbsp;</strong></h5>
+              <small class="ms-auto">${pegandoDataTempoAtual()}</small>
         </div>`
 
     showingAlert.innerHTML = alertStruct
 
-    //saveAlertToLocalStorage(alertStruct)
+    saveAlertToLocalStorage(alertStruct)
 
 }
-/*
+
+// inicializando o localStorage com um array vazio
+if (!localStorage.getItem("alerts")) {
+    localStorage.setItem("alerts", JSON.stringify([])); // Inicializa com um array vazio
+    //uso do JSON.stringify para transformar o array em uma string, pois o localStorage não consegue armazenar uma estrutura array ou objetos.
+
+}
+
 function saveAlertToLocalStorage(alertStruct) {
 
 
-//a função começa pegando com uma tentativa(pois t) de pegar alertas armazenados e converte de string para objetos, pois o alertStruct não é 100% string
+    let alerts = JSON.parse(localStorage.getItem("alerts")); // Recupera o array já inicializado
+    //usando jsonParse pois tranforma a string em um (array/objeto) para podermos manipula-lo
 
-    let alerts = JSON.parse(localStorage.getItem("alerts")) || [];
-
-    console.log(alerts); //printando array de alertas para verificar se o alertStruct foi convertido corretamente
-
-//salva o novo alerta ao array de alertas e converte de volta a string para printa-los dps na função onload
-    alerts.push(alertStruct);
-    localStorage.setItem("alerts", JSON.stringify(alerts));
-
+    alerts.push(alertStruct); // Adiciona o novo alerta ao array de
+    localStorage.setItem("alerts", JSON.stringify(alerts)); // Atualiza o localStorage
 }
-    */
+
+    
 
 
-/* Função para carregar os alertas do localStorage ao carregar a página
 function loadAlertsFromLocalStorage() {
 
     //pegando o id da div que vai mostrar o historico de alertas
-    const divAlert = document.getElementById("alerts-history");
-''
-    //requisição de array de alertas do localStorage 
-    const alerts = JSON.parse(localStorage.getItem("alerts")) || [];
+    const divAlertStorage = document.getElementById("adiv-alert-storage");
 
-    //estrutura de repetição forEach para percorrer o array de alertas e printalos todos na tela quando a tela for recarregada
-    alerts.forEach(alert => {
-        divAlert.innerHTML += alert;
+    //requisição de array de alertas do localStorage 
+    const alertsStorage = JSON.parse(localStorage.getItem("alerts"));
+
+    alertsStorage.forEach(alert => {
+        divAlertStorage.innerHTML += alert;
     });
+
+        
 }
 
+ //Função para carregar os alertas do localStorage ao carregar a página
 window.onload = function() {
+    console.log("Carregando os alertas do localStorage...");
     loadAlertsFromLocalStorage();
-};*/
+};
 
 function pegandoDataTempoAtual() {
 
@@ -152,7 +157,5 @@ function pegandoDataTempoAtual() {
         createAlert("Energia do ar-condicionado caiu!", "warning", `${dado.potencia.toFixed(2)}W`, "alertDefault");
     }
 }
-
-
 
 
