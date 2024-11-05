@@ -1,33 +1,171 @@
-const ctxTemp = document.getElementById('graficoTemperatura').getContext('2d');
+// Variáveis globais para armazenar gráficos
+let grafico;
 
-const graficoTemperatura = new Chart(ctxTemp, {
+// Função para atualizar o gráfico baseado no tipo selecionado
+function atualizarGrafico(tipo) {
 
-    type: 'line', // Tipo de gráfico - linha para monitoramento ao longo do tempo
-    data: {
-        labels: ["00:00", "01:00", "02:00", "03:00", "04:00","5:00", "6:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"], // Exemplo de horários
-        datasets: [{
-            label: 'Temperatura (°C)',
-            data: [22, 24, 23, 25, 24], // Dados de temperatura para cada horário
-            backgroundColor: 'rgba(255, 99, 132, 0.2)', // Cor de fundo
-            borderColor: 'rgba(255, 99, 132, 1)', // Cor da linha
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true,
-                title: {
-                    display: true,
-                    text: 'Temperatura (°C)'
-                }
+    // Limpa o gráfico anterior
+    if (grafico) {
+        grafico.destroy(); // Se já existe um gráfico, destrua-o antes de criar um novo
+    }
+
+// Captura os dados do localStorage
+const dadosSensores = JSON.parse(localStorage.getItem("historicoDiario")) || [];
+///////////////////////////////////////////////////////////////////////////////
+
+// o metodo map() seleciona o dado especifico do array e retorna um novo array
+
+const listaHorarios = dadosSensores.map(dado => dado.horario);
+const listaTemperaturas = dadosSensores.map(dado => dado.temperatura);
+const listaUmidades = dadosSensores.map(dado => dado.umidade);
+const listaPotencias = dadosSensores.map(dado => dado.potencia);
+const listaCorrentes = dadosSensores.map(dado => dado.corrente);
+
+console.log(dadosSensores)
+
+// Cria um novo gráfico com base na seleção
+const ctx = document.getElementById("grafico").getContext("2d");
+
+switch (tipo) {
+
+    case "0": // Temperatura
+        grafico = new Chart(ctx, {
+            type: "line",
+            data: {
+                labels: listaHorarios,
+                datasets: [{
+                    label: "Temperatura (°C)",
+                    data: listaTemperaturas,
+                    borderColor: "rgba(255, 99, 132, 1)",
+                    backgroundColor: "rgba(255, 99, 132, 0.2)",
+                    borderWidth: 1,
+                    fill: true
+                }]
             },
-            x: {
-                title: {
-                    display: true,
-                    text: 'Horário'
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
-        }
-    }
+        });
+        break;
+
+    case "1": // Umidade
+        grafico = new Chart(ctx, {
+            type: "line",
+            data: {
+                labels: listaHorarios,
+                datasets: [{
+                    label: "Umidade (%)",
+                    data: listaUmidades,
+                    borderColor: "rgba(54, 162, 235, 1)",
+                    backgroundColor: "rgba(54, 162, 235, 0.2)",
+                    borderWidth: 1,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        break;
+
+    case "2": // Corrente
+        grafico = new Chart(ctx, {
+            type: "line",
+            data: {
+                labels: listaHorarios,
+                datasets: [{
+                    label: "Corrente (A)",
+                    data: listaCorrentes,
+                    borderColor: "rgba(75, 192, 192, 1)",
+                    backgroundColor: "rgba(75, 192, 192, 0.2)",
+                    borderWidth: 1,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        break;
+
+    case "3": // Potência
+        grafico = new Chart(ctx, {
+            type: "line",
+            data: {
+                labels: listaHorarios,
+                datasets: [{
+                    label: "Potência (W)",
+                    data: listaPotencias,
+                    borderColor: "rgba(255, 206, 86, 1)",
+                    backgroundColor: "rgba(255, 206, 86, 0.2)",
+                    borderWidth: 1,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        break;
+
+    default:
+        break;
+}
+}
+
+// Adiciona evento ao select
+document.getElementById("tipoGrafico").addEventListener("change", function () {
+
+const tipoSelecionado = this.value;
+
+atualizarGrafico(tipoSelecionado);
+
 });
+
+// Chama a função uma vez para exibir o gráfico padrão ao carregar a página
+atualizarGrafico("0"); // Exibe o gráfico de temperatura por padrão
+
+
+function deleteData(){
+
+    localStorage.removeItem("historicoDiario");
+
+    alert("Todos os dados foram excluídos");
+
+}
+
+const umaSemanaEmMilissegundos = 7 * 24 * 60 * 60 * 1000; // 7 dias
+
+setInterval(deleteData, umaSemanaEmMilissegundos);

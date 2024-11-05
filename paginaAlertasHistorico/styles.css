@@ -40,7 +40,6 @@ nav a{
 
 .title-page{
 
-    padding-top: 35px;
     padding-left: 90px;
     padding-right: 90px;
 
@@ -125,5 +124,26 @@ font-size: 40px;
       #div-alert-storage{
 
         width: 580px;
+        display: flex;
+        flex-direction: column-reverse;
 
+      }
+
+      .container-title-button{
+        padding-top: 35px;
+
+
+        display: flex;
+        justify-content: space-between;
+
+      }
+
+      .container-title-button button{
+
+        margin-right: 90px;
+
+        
+
+        width: 145px;
+        height: 40px;
       }

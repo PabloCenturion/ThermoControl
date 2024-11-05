@@ -21,46 +21,38 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                  <a class="nav-link" href="/paginaInicial/index.html">Inicio</a>
+                  <a class="nav-link" href="/paginaInicial/index.html" target="_blank" >Inicio</a>
                   <a class="nav-link active" aria-current="page" href="/paginaRelatorios/index.html">Relatórios</a>
-                  <a class="nav-link" href="/paginaAlertasHistorico/index.html">Alertas</a>
-                  <a class="nav-link" href="/paginaConfigurações/index.html">Configurações</a>
+                  <a class="nav-link" href="/paginaAlertasHistorico/index.html" target="_blank">Alertas</a>
+                  <a class="nav-link" href="/paginaConfigurações/index.html" target="_blank">Configurações</a>
                 </div>
               </div>
             </div>
           </nav>
 
     <div class="container-infos">
-        <h2 class="title-page">Relatórios de Dados</h2>
+        <h2 class="title-page">Relatórios de Dados Diários</h2>
 
         <section class="container-selectors">
 
             <div class="block-selector-type">
-                <select class="form-select form-size" aria-label="Selecionar Tipo Grafico">
-                    <option selected>Temperatura</option>
+                <select id="tipoGrafico" class="form-select form-size" aria-label="Selecionar Tipo Grafico">
+                    <option value="0" selected>Temperatura</option>
                     <option value="1">Umidade</option>
                     <option value="2">Corrente</option>
                     <option value="3">Potência</option>
                 </select>
             </div>
 
-            <div class="block-selector-time">
-                <select class="form-select form-size" aria-label="Selecionar Tempo">
-                    <option selected>Hora</option>
-                    <option value="1">Dia</option>
-                    <option value="2">Semana</option>
-                    <option value="3">Mês</option>
-                </select>
-            </div>
+            <button class="btn btn-warning" type="submit" onclick="deleteData()">Apagar Dados</button>
+
         </section>
 
         <div class="chart-type" style="height: 400px;">
-            <div>
-                <canvas id="graficoTemperatura" style="height: 400px; width: 1000px; background-color: white;"></canvas>
-              </div>
-            <!-- grafico aqui -->
-        </div>
-    </div>
+            <canvas id="grafico"></canvas>
+
+            </div>
+
 
 </section>
 
@@ -73,6 +65,8 @@
     <!-- BIBLIOTECA CHART.JS -->
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="/paginaInicial/script.js"></script>
 
     <script src="script.js"></script>
 </body>

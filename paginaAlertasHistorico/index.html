@@ -24,18 +24,23 @@
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                  <a class="nav-link" href="/paginaInicial/index.html">Inicio</a>
-                  <a class="nav-link" href="/paginaRelatorios/index.html">Relatórios</a>
+                <div class="navbar-nav"> 
+                  <a class="nav-link" href="/paginaInicial/index.html" target="_blank">Inicio</a>
+                  <a class="nav-link" href="/paginaRelatorios/index.html" target="_blank">Relatórios</a>
                   <a class="nav-link active" aria-current="page" href="/paginaAlertasHistorico/index.html">Alertas</a>
-                  <a class="nav-link" href="/paginaConfigurações/index.html">Configurações</a>
+                  <a class="nav-link" href="/paginaConfigurações/index.html" target="_blank">Configurações</a>
                 </div>
               </div>
             </div>
           </nav>
 
 
+          <section class="container-title-button">
+
         <h2 class="title-page">Histórico de Alertas</h2>
+        <button class="btn btn-warning" type="submit" onclick="clearStorage()">Apagar Histórico</button>
+
+      </section>
 
           <section class="container-alerts">
             <div id="div-alert-storage">
@@ -48,7 +53,7 @@
 
     </section>
 
-    
+    <script src="script.js" defer></script>
     <script src="/paginaConfigurações/script.js" defer></script>
     <script src="/paginaInicial/script.js" defer></script>
 <!-- Bootstrap Bundle JS with Popper (necessário para a funcionalidade de colapso) -->
