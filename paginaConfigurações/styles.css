@@ -122,7 +122,6 @@ input{
 
     flex-direction: column;
 
-
     flex:1;
 }
 
@@ -134,8 +133,6 @@ padding-left: 90px;
 
 .nav-color{
     background-color: #0f4571 !important;
-    
-    
     
     
     }

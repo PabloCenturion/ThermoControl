@@ -50,9 +50,7 @@ function loadAlertsFromLocalStorage() {
 
 }
 
-
 loadAlertsFromLocalStorage();
-
 
 function pegandoDataTempoAtual() {
 

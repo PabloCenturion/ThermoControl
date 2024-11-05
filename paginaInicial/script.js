@@ -1,14 +1,19 @@
 const arduinoIP = 'http://10.35.221.159/';
 
 /* Função para buscar dados do Arduino */
+
 async function buscarSensorDados() {
+
     try {
         const respostaArduino = await fetch(arduinoIP);
+
         if (!respostaArduino.ok) {
+
             throw new Error(`Erro na requisição: ${respostaArduino.statusText}`);
         }
 
         const dado = await respostaArduino.json();
+
         console.log(dado); 
 
         document.getElementById('status-temperature').innerText = `${dado.temperatura}°C`;
@@ -22,17 +27,22 @@ async function buscarSensorDados() {
         definindoUmidadeAtipica(dado);
         definindoEnergiaBaixa(dado);
 
+
     } catch (erro) {
         console.log('Erro ao buscar dados do Arduino:', erro);
+
+        const structLoading = `<section class="displayFlex"> <div class="lds-ring"><div></div><div></div><div></div><div></div></div> <span>Carregando...</spans><section>`
+
+        document.getElementById('status-temperature').innerHTML = structLoading;
+        document.getElementById('status-umidity').innerHTML = structLoading;
+        document.getElementById('status-power').innerHTML = structLoading;
+        document.getElementById('status-current').innerHTML = structLoading;
     }
 }
 
 setInterval(buscarSensorDados, 5000);
 
 window.onload = buscarSensorDados;
-
-
-
 
     const alertTemp = document.getElementById('alertTemp');
     const alertHumidity = document.getElementById('alertHumidity');
@@ -48,4 +58,5 @@ window.onload = buscarSensorDados;
         </div>`;
 
             alertTemp.innerHTML = structNonAlert;
+            alertHumidity.innerHTML = structNonAlert.style.display = 'none';
 
