@@ -21,6 +21,8 @@ const listaUmidades = dadosSensores.map(dado => dado.umidade);
 const listaPotencias = dadosSensores.map(dado => dado.potencia);
 const listaCorrentes = dadosSensores.map(dado => dado.corrente);
 
+console.log(listaCorrentes) //conferindo  novo array
+
 console.log(dadosSensores)
 
 // Cria um novo gráfico com base na seleção
