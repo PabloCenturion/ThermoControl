@@ -37,7 +37,7 @@ async function buscarSensorDados() {
     } catch (erro) {
         console.log('Erro ao buscar dados do Arduino:', erro);
 
-        const structLoading = `<section class="displayFlex"> <div class="lds-ring"><div></div><div></div><div></div><div></div></div> <span>Carregando...</spans><section>`
+        //const structLoading = `<section class="displayFlex"> <div class="lds-ring"><div></div><div></div><div></div><div></div></div> <span>Carregando...</spans><section>`
 
         /*document.getElementById('status-temperature').innerHTML = structLoading;
         document.getElementById('status-umidity').innerHTML = structLoading;

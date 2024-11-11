@@ -1,17 +1,24 @@
-function createAlert(textAlert, typeAlert, temperature, divId) {
+function createAlert(textAlert, typeAlert, dataSensor, divId) {
 
     const showingAlert = document.getElementById(divId);
+
+    const alertData = {
+        typeAlert: typeAlert,
+        textAlert: textAlert,
+        dataSensor: dataSensor,
+        dateTime: pegandoDataTempoAtual()
+    };
 
     const alertStruct = `
         <div class="alert alert-${typeAlert} d-flex align-items-center" role="alert">
             <i class="bi bi-exclamation-triangle-fill me-2"></i>
-              <h5><strong>${textAlert}: ${temperature}°C &nbsp;&nbsp;</strong></h5>
+              <h5><strong>${textAlert}: ${dataSensor}°C &nbsp;&nbsp;</strong></h5>
               <small class="ms-auto">${pegandoDataTempoAtual()}</small>
         </div>`
 
     showingAlert.innerHTML = alertStruct
 
-    saveAlertToLocalStorage(alertStruct)
+    saveAlertToLocalStorage(alertData)
 
 }
 
@@ -23,12 +30,12 @@ if (!localStorage.getItem("alerts")) {
 
 }
 
-function saveAlertToLocalStorage(alertStruct) {
+function saveAlertToLocalStorage(alertData) {
 
     let alerts = JSON.parse(localStorage.getItem("alerts")); // Recupera o array já inicializado
     //usando jsonParse pois tranforma a string em um (array/objeto) para podermos manipula-lo
 
-    alerts.push(alertStruct); // Adiciona o novo alerta ao array de
+    alerts.push(alertData); // Adiciona o novo alerta ao array de
     
     localStorage.setItem("alerts", JSON.stringify(alerts)); // Atualiza o localStorage
 }
