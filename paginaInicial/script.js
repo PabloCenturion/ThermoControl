@@ -1,7 +1,14 @@
 const arduinoIP = 'http://192.168.1.214/';
-let ultimaHoraSalva = null; // Variável para controlar a última hora em que dados foram salvos
+let ultimaHoraSalva = null; 
 
 
+const structLoading = `<section class="displayFlex"> <div class="lds-ring"><div></div><div></div><div></div><div></div></div> <span>Carregando...</spans><section>`
+
+        document.getElementById('status-temperature').innerHTML = structLoading;
+        document.getElementById('status-umidity').innerHTML = structLoading;
+        document.getElementById('status-power').innerHTML = structLoading;
+        document.getElementById('status-current').innerHTML = structLoading;
+        
 /* Função para buscar dados do Arduino */
 
 async function buscarSensorDados() {
@@ -37,12 +44,6 @@ async function buscarSensorDados() {
     } catch (erro) {
         console.log('Erro ao buscar dados do Arduino:', erro);
 
-        //const structLoading = `<section class="displayFlex"> <div class="lds-ring"><div></div><div></div><div></div><div></div></div> <span>Carregando...</spans><section>`
-
-        /*document.getElementById('status-temperature').innerHTML = structLoading;
-        document.getElementById('status-umidity').innerHTML = structLoading;
-        document.getElementById('status-power').innerHTML = structLoading;
-        document.getElementById('status-current').innerHTML = structLoading;*/
     }
 }
 
@@ -73,6 +74,32 @@ function saveDataByHour(dado) {
 setInterval(buscarSensorDados, 5000);
 
 buscarSensorDados();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Estrutura de alertas quando não há dados
 const alertTemp = document.getElementById('alertTemp');

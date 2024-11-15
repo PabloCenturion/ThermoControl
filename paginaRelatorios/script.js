@@ -22,7 +22,6 @@ const listaPotencias = dadosSensores.map(dado => dado.potencia);
 const listaCorrentes = dadosSensores.map(dado => dado.corrente);
 
 console.log(listaCorrentes) //conferindo  novo array
-
 console.log(dadosSensores)
 
 // Cria um novo gráfico com base na seleção
@@ -168,6 +167,8 @@ function deleteData(){
 
 }
 
-const umaSemanaEmMilissegundos = 7 * 24 * 60 * 60 * 1000;
+const umaSemanaEmMilissegundos = 7 * 24 * 60 * 60 * 1000; 
+
+
 
 setInterval(deleteData, umaSemanaEmMilissegundos);

@@ -42,19 +42,21 @@ function saveAlertToLocalStorage(alertData) {
 
 
 function loadAlertsFromLocalStorage() {
-
-    //pegando o id da div que vai mostrar o historico de alertas
+    // Pegando o id da div que vai mostrar o histórico de alertas
     const divAlertStorage = document.getElementById("div-alert-storage");
 
-    //requisição de array de alertas do localStorage 
+    // Requisição de array de alertas do localStorage
     const alertsStorage = JSON.parse(localStorage.getItem("alerts"));
 
     alertsStorage.forEach(alert => {
-
-        divAlertStorage.innerHTML += alert;
-
+        const alertHTML = `
+            <div class="alert alert-${alert.typeAlert} d-flex align-items-center" role="alert">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                <h5><strong>${alert.textAlert}: ${alert.dataSensor} &nbsp;&nbsp;</strong></h5>
+                <small class="ms-auto">${alert.dateTime}</small>
+            </div>`;
+        divAlertStorage.innerHTML += alertHTML;
     });
-
 }
 
 loadAlertsFromLocalStorage();
