@@ -6,14 +6,11 @@ function atualizarGrafico(tipo) {
 
     // Limpa o gráfico anterior
     if (grafico) {
-        grafico.destroy(); // Se já existe um gráfico, destrua-o antes de criar um novo
+        grafico.destroy();
     }
 
 // Captura os dados do localStorage
 const dadosSensores = JSON.parse(localStorage.getItem("historicoDiario")) || [];
-///////////////////////////////////////////////////////////////////////////////
-
-// o metodo map() seleciona o dado especifico do array e retorna um novo array
 
 const listaHorarios = dadosSensores.map(dado => dado.horario);
 const listaTemperaturas = dadosSensores.map(dado => dado.temperatura);
@@ -155,7 +152,6 @@ atualizarGrafico(tipoSelecionado);
 
 });
 
-// Chama a função uma vez para exibir o gráfico padrão ao carregar a página
 atualizarGrafico("0"); // Exibe o gráfico de temperatura por padrão
 
 

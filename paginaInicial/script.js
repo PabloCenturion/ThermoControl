@@ -4,10 +4,25 @@ let ultimaHoraSalva = null;
 
 const structLoading = `<section class="displayFlex"> <div class="lds-ring"><div></div><div></div><div></div><div></div></div> <span>Carregando...</spans><section>`
 
-        document.getElementById('status-temperature').innerHTML = structLoading;
-        document.getElementById('status-umidity').innerHTML = structLoading;
-        document.getElementById('status-power').innerHTML = structLoading;
-        document.getElementById('status-current').innerHTML = structLoading;
+
+let tempBlock = document.getElementById('status-temperature')
+
+tempBlock.innerHTML = structLoading
+
+console.log("cade essa porra")
+console.log(tempBlock)
+
+let humiBlock = document.getElementById('status-umidity')
+humiBlock.innerHTML = structLoading
+
+let pwrBlock= document.getElementById('status-power')
+
+pwrBlock.innerHTML = structLoading
+
+currBlock = document.getElementById('status-current')
+
+currBlock.innerHTML = structLoading;
+
         
 /* Função para buscar dados do Arduino */
 

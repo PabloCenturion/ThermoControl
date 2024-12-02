@@ -163,3 +163,24 @@ function pegandoDataTempoAtual() {
 }
 
 
+function exibirValoresInput(){
+
+    const inputGoodTempMin = document.getElementById("temp-good-min")
+    const inputGoodTempMax = document.getElementById("temp-good-max")
+    const inputHighTemp = document.getElementById("temp-high")
+
+    inputGoodTempMin.value = localStorage.getItem("tempMin")
+    inputGoodTempMax.value = localStorage.getItem("tempMax")
+    inputHighTemp.value = localStorage.getItem("tempHigh")
+
+    const inputGoodHumidityMin = document.getElementById("humidity-good-min")
+    const inputGoodHumidityMax = document.getElementById("humidity-good-max")
+    const inputHighHumidity = document.getElementById("humidity-high")
+
+    inputGoodHumidityMin.value = localStorage.getItem("humidityMin")
+    inputGoodHumidityMax.value = localStorage.getItem("humidityMax")
+    inputHighHumidity.value = localStorage.getItem("humidityHigh")
+
+}
+
+exibirValoresInput()
