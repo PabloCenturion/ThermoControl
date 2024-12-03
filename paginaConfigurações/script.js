@@ -108,7 +108,7 @@ function pegandoDataTempoAtual() {
 
     if (dado.temperatura >= tempHigh) {
 
-        createAlert("Temperatura Muito alta !!", "danger", `${dado.temperatura}°C`, "alertTemp");
+        createAlert("Temperatura Muito alta !!", "danger", `${dado.temperatura}°C`, "alertTemperatureDiv");
 
     }
         }
@@ -116,34 +116,42 @@ function pegandoDataTempoAtual() {
 
         function definindoTemperaturaAtipica(dado){
 
-            const tempMax = parseFloat(localStorage.getItem('tempMax'));
-            const tempHigh = parseFloat(localStorage.getItem('tempHigh'));
+            if(document.getElementById("alert-temp").checked){
 
 
-            if(dado.temperatura > tempMax && dado.temperatura < tempHigh){
-
-
-                createAlert("Temperatura Atipica !!", "warning", `${dado.temperatura}°C`, "alertTemp");
-            }
+                const tempMax = parseFloat(localStorage.getItem('tempMax'));
+                const tempHigh = parseFloat(localStorage.getItem('tempHigh'));
     
+    
+                if(dado.temperatura > tempMax && dado.temperatura < tempHigh){
+    
+    
+                    createAlert("Temperatura Atipica !!", "warning", `${dado.temperatura}°C`, "alertTemperatureDiv");
+                }
+    
+                
+            }
+
+            
     }
 
     function definindoAlertaUmidadeAlta(dado){
 
-        const humidityHigh = parseFloat(localStorage.getItem('humidityHigh'));
+        if(document.getElementById("alert-humidity").checked){
 
-        if (dado.umidade >= humidityHigh) {
+            const humidityHigh = parseFloat(localStorage.getItem('humidityHigh'));
 
+            if (dado.umidade >= humidityHigh) {
+    
+            createAlert("Umidade Muito Alta !!", "danger", `${dado.umidade}%`, "alertHumidity");
 
-        createAlert("Umidade Muito Alta !!", "danger", `${dado.umidade}%`, "alertHumidity");
-}
+        }
     }
+ }
     function definindoUmidadeAtipica(dado){
         
         const humidityMax = parseFloat(localStorage.getItem('humidityMax'));
         const humidityHigh = parseFloat(localStorage.getItem('humidityHigh'));
-
-
 
         if(dado.umidade > humidityMax && dado.umidade < humidityHigh){
 
@@ -165,21 +173,21 @@ function pegandoDataTempoAtual() {
 
 function exibirValoresInput(){
 
-    const inputGoodTempMin = document.getElementById("temp-good-min")
-    const inputGoodTempMax = document.getElementById("temp-good-max")
-    const inputHighTemp = document.getElementById("temp-high")
+    const inputGoodTempMin = document.getElementById("temp-good-min").value
+    const inputGoodTempMax = document.getElementById("temp-good-max").value
+    const inputHighTemp = document.getElementById("temp-high").value
 
-    inputGoodTempMin.value = localStorage.getItem("tempMin")
+    inputGoodTempMin = localStorage.getItem("tempMin")
     inputGoodTempMax.value = localStorage.getItem("tempMax")
     inputHighTemp.value = localStorage.getItem("tempHigh")
 
-    const inputGoodHumidityMin = document.getElementById("humidity-good-min")
-    const inputGoodHumidityMax = document.getElementById("humidity-good-max")
-    const inputHighHumidity = document.getElementById("humidity-high")
+    const inputGoodHumidityMin = document.getElementById("humidity-good-min").value
+    const inputGoodHumidityMax = document.getElementById("humidity-good-max").value
+    const inputHighHumidity = document.getElementById("humidity-high").value
 
-    inputGoodHumidityMin.value = localStorage.getItem("humidityMin")
-    inputGoodHumidityMax.value = localStorage.getItem("humidityMax")
-    inputHighHumidity.value = localStorage.getItem("humidityHigh")
+    inputGoodHumidityMin = localStorage.getItem("humidityMin")
+    inputGoodHumidityMax = localStorage.getItem("humidityMax")
+    inputHighHumidity = localStorage.getItem("humidityHigh")
 
 }
 

@@ -1,39 +1,58 @@
-const arduinoIP = 'http://192.168.1.214/';
+const arduinoIP = 'http://192.168.68.6/';
 let ultimaHoraSalva = null; 
 
+function loadingDivExpose(){
 
-const structLoading = `<section class="displayFlex"> <div class="lds-ring"><div></div><div></div><div></div><div></div></div> <span>Carregando...</spans><section>`
-
+    const structLoading = `
+    <section class="displayFlex">
+            <div class="lds-ring">
+                <div></div><div></div><div></div><div></div>
+            </div>
+            <span>Carregando...</span>
+        </section>`
 
 let tempBlock = document.getElementById('status-temperature')
-
 tempBlock.innerHTML = structLoading
-
-console.log("cade essa porra")
-console.log(tempBlock)
 
 let humiBlock = document.getElementById('status-umidity')
 humiBlock.innerHTML = structLoading
 
 let pwrBlock= document.getElementById('status-power')
-
 pwrBlock.innerHTML = structLoading
 
 currBlock = document.getElementById('status-current')
-
 currBlock.innerHTML = structLoading;
 
-        
-/* Função para buscar dados do Arduino */
+}
 
+function hideLoading(){
+
+let tempBlock = document.getElementById('status-temperature')
+tempBlock.innerHTML = ''
+
+let humiBlock = document.getElementById('status-umidity')
+humiBlock.innerHTML = ''
+
+let pwrBlock= document.getElementById('status-power')
+pwrBlock.innerHTML = ''
+
+currBlock = document.getElementById('status-current')
+currBlock.innerHTML = '';
+
+}
+
+/* Função para buscar dados do Arduino */
 async function buscarSensorDados() {
+
+    loadingDivExpose()
 
     try {
         const respostaArduino = await fetch(arduinoIP);
 
         if (!respostaArduino.ok) {
 
-            throw new Error(`Erro na requisição: ${respostaArduino.statusText}`);
+                console.error(`Erro na requisição: ${respostaArduino.statusText}`);
+
         }
 
         const dado = await respostaArduino.json();
@@ -58,8 +77,21 @@ async function buscarSensorDados() {
 
     } catch (erro) {
         console.log('Erro ao buscar dados do Arduino:', erro);
+        statusErrorDiv("Dificuldade ao se Conectar com Servidor, aguarde um momento")
+
+    }finally{
+
+        hideLoading()
 
     }
+}
+
+function statusErrorDiv(textError){
+
+    const divStatusError  = document.getElementById("status-error")
+
+    divStatusError.innerText = textError
+
 }
 
 // Função para salvar uma leitura a cada hora para os gráficos diários
@@ -91,34 +123,8 @@ setInterval(buscarSensorDados, 5000);
 buscarSensorDados();
 
 
+// Tratando Exibição de alertas
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Estrutura de alertas quando não há dados
-const alertTemp = document.getElementById('alertTemp');
-const alertHumidity = document.getElementById('alertHumidity');
 const structNonAlert = `
     <div class="block-alert-non">
         <div id="alertNoWarning" class="alert non-info d-flex align-items-center" role="alert">
@@ -127,4 +133,54 @@ const structNonAlert = `
             <small class="ms-auto"></small>
         </div>
     </div>`;
-alertTemp.innerHTML = structNonAlert;
+
+const containerMain = document.querySelector(".container-main")
+const alertTemp = document.getElementById('alertTemperatureDiv');
+const alertHumidity = document.getElementById('alertHumidity');
+
+if(!containerMain.document.querySelector(".alertTemperatureDiv") || !containerMain.document.querySelector(".alertHumidity") ){
+
+    
+    alertTemp.innerHTML = structNonAlert;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // Estrutura de alertas quando não há dados
+// const alertTemp = document.getElementById('alertTemp');
+// const alertHumidity = document.getElementById('alertHumidity');
+// const structNonAlert = `
+//     <div class="block-alert-non">
+//         <div id="alertNoWarning" class="alert non-info d-flex align-items-center" role="alert">
+//             <i class="bi bi-exclamation-triangle-fill me-2"></i>
+//             <strong><h5>Sem Avisos No Momento</h5></strong>
+//             <small class="ms-auto"></small>
+//         </div>
+//     </div>`;
+// alertTemp.innerHTML = structNonAlert;

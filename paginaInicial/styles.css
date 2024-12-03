@@ -430,3 +430,19 @@ font-size: 4vh;
 
 }
 
+
+#status-error{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #1d1214;
+    font-size: 4dvh;
+    padding: 20px;
+
+
+    
+
+}
+
