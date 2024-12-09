@@ -1,4 +1,4 @@
-const arduinoIP = 'http://192.168.68.6/';
+const arduinoIP = 'http://192.168.1.214/';
 let ultimaHoraSalva = null; 
 
 function loadingDivExpose(){
@@ -25,26 +25,11 @@ currBlock.innerHTML = structLoading;
 
 }
 
-function hideLoading(){
-
-let tempBlock = document.getElementById('status-temperature')
-tempBlock.innerHTML = ''
-
-let humiBlock = document.getElementById('status-umidity')
-humiBlock.innerHTML = ''
-
-let pwrBlock= document.getElementById('status-power')
-pwrBlock.innerHTML = ''
-
-currBlock = document.getElementById('status-current')
-currBlock.innerHTML = '';
-
-}
+loadingDivExpose()
 
 /* Função para buscar dados do Arduino */
 async function buscarSensorDados() {
 
-    loadingDivExpose()
 
     try {
         const respostaArduino = await fetch(arduinoIP);
@@ -67,21 +52,15 @@ async function buscarSensorDados() {
 
         definindoAlertaTemperaturaAlta(dado);
         definindoTemperaturaAtipica(dado);
+
         definindoAlertaUmidadeAlta(dado);
         definindoUmidadeAtipica(dado);
-        definindoEnergiaBaixa(dado);
-
 
         saveDataByHour(dado);
 
 
     } catch (erro) {
         console.log('Erro ao buscar dados do Arduino:', erro);
-        statusErrorDiv("Dificuldade ao se Conectar com Servidor, aguarde um momento")
-
-    }finally{
-
-        hideLoading()
 
     }
 }
@@ -123,64 +102,126 @@ setInterval(buscarSensorDados, 5000);
 buscarSensorDados();
 
 
-// Tratando Exibição de alertas
 
-const structNonAlert = `
-    <div class="block-alert-non">
-        <div id="alertNoWarning" class="alert non-info d-flex align-items-center" role="alert">
-            <i class="bi bi-exclamation-triangle-fill me-2"></i>
-            <strong><h5>Sem Avisos No Momento</h5></strong>
-            <small class="ms-auto"></small>
-        </div>
-    </div>`;
+function pegandoDataTempoAtual() {
 
-const containerMain = document.querySelector(".container-main")
-const alertTemp = document.getElementById('alertTemperatureDiv');
-const alertHumidity = document.getElementById('alertHumidity');
-
-if(!containerMain.document.querySelector(".alertTemperatureDiv") || !containerMain.document.querySelector(".alertHumidity") ){
-
+    const agora = new Date();
+    const horas = String(agora.getHours()).padStart(2, '0');
+    const minutos = String(agora.getMinutes()).padStart(2, '0');
+    const dia = String(agora.getDate()).padStart(2, '0');
+    const mes = String(agora.getMonth() + 1).padStart(2, '0');
+    const ano = agora.getFullYear();
     
-    alertTemp.innerHTML = structNonAlert;
+    return `${horas}:${minutos} - ${dia}/${mes}/${ano}`;
+}
 
+function saveAlertToLocalStorage(alertData) {
+
+    let alerts = JSON.parse(localStorage.getItem("alerts")); // Recupera o array já inicializado
+    //usando jsonParse pois tranforma a string em um (array/objeto) para podermos manipula-lo
+
+    alerts.push(alertData); // Adiciona o novo alerta ao array de
+    
+    localStorage.setItem("alerts", JSON.stringify(alerts)); // Atualiza o localStorage
+}
+
+function createAlert(textAlert, typeAlert, dataSensor, tempOrHighDiv) {
+    const alertsDiv = document.getElementById("alertsDiv");
+
+    let alertDiv = document.getElementById(tempOrHighDiv);
+
+    if (!alertDiv) {
+
+        alertDiv = document.createElement("div");
+        alertDiv.id = tempOrHighDiv;
+        alertsDiv.appendChild(alertDiv);
+    }
+
+    alertDiv.innerHTML = "";
+
+    const alertHTML = document.createElement("div");
+    alertHTML.className = `alert alert-${typeAlert} d-flex align-items-center`;
+    alertHTML.role = "alert";
+    alertHTML.innerHTML = `
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        <h5><strong>${textAlert}: ${dataSensor} &nbsp;&nbsp;</strong></h5>
+        <small class="ms-auto">${pegandoDataTempoAtual()}</small>
+    `;
+
+    alertDiv.appendChild(alertHTML);
+
+    const alertData = {
+        typeAlert: typeAlert,
+        textAlert: textAlert,
+        dataSensor: dataSensor,
+        dateTime: pegandoDataTempoAtual()
+    };
+
+    saveAlertToLocalStorage(alertData);
 }
 
 
 
 
+// funções de alerta
+
+function definindoAlertaTemperaturaAlta(dado){
+
+    const tempHigh = parseFloat(localStorage.getItem('tempHigh'));
+
+if (dado.temperatura >= tempHigh) {
+
+    createAlert("Temperatura Muito alta !!", "danger", `${dado.temperatura}°C`, "alertTemperatureDiv");
+
+}
+    }
+
+
+    function definindoTemperaturaAtipica(dado){
+
+        const isTempAlertEnabled = localStorage.getItem("alertTempChecked") === "true";
+
+        if (isTempAlertEnabled) {
+
+            const tempMax = parseFloat(localStorage.getItem("humidityMax"));
+            const tempHigh = parseFloat(localStorage.getItem("humidityHigh"));
+    
+            if (dado.temperatura > tempMax && dado.temperatura < tempHigh) {
+                createAlert("Temperatura Atipica !!", "warning", `${dado.temperatura}°C`, "alertTemperatureDiv");
+            }
+        }
+
+}
+
+
+function definindoAlertaUmidadeAlta(dado){
+
+
+        const humidityHigh = parseFloat(localStorage.getItem('humidityHigh'));
+
+        if (dado.umidade >= humidityHigh) {
+
+        createAlert("Umidade Muito Alta !!", "danger", `${dado.umidade}%`, "alertHumidityDiv");
+
+    }
+
+}
+function definindoUmidadeAtipica(dado) {
+
+    const isHumidityAlertEnabled = localStorage.getItem("alertHumidityChecked") === "true";
+
+    if (isHumidityAlertEnabled) {
+        const humidityMax = parseFloat(localStorage.getItem("humidityMax"));
+        const humidityHigh = parseFloat(localStorage.getItem("humidityHigh"));
+
+        if (dado.umidade > humidityMax && dado.umidade < humidityHigh) {
+            createAlert("Umidade Atípica!!", "warning", `${dado.umidade}%`, "alertHumidityDiv");
+        }
+    }
+}
 
 
 
+//------------------------------------------------------------------------//
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // Estrutura de alertas quando não há dados
-// const alertTemp = document.getElementById('alertTemp');
-// const alertHumidity = document.getElementById('alertHumidity');
-// const structNonAlert = `
-//     <div class="block-alert-non">
-//         <div id="alertNoWarning" class="alert non-info d-flex align-items-center" role="alert">
-//             <i class="bi bi-exclamation-triangle-fill me-2"></i>
-//             <strong><h5>Sem Avisos No Momento</h5></strong>
-//             <small class="ms-auto"></small>
-//         </div>
-//     </div>`;
-// alertTemp.innerHTML = structNonAlert;

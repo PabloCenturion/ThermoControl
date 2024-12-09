@@ -446,3 +446,13 @@ font-size: 4vh;
 
 }
 
+#alertsDiv{
+
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+width: 98%;
+
+}
+
